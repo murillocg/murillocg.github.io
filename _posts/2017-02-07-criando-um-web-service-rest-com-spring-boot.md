@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Criando um Web Service REST com Spring Boot
 date: '2017-02-07'
 ---
