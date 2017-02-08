@@ -1,12 +1,10 @@
 ---
 layout: default
 title: "Busca murillocg.github.io"
-#css: "/css/search.css"
+css: "/css/search.css"
 ---
 
-# Busca murillocg.github.io
-
-### Busca do Google
+### Busca do Google no blog
 <div id="google-custom-search">
 <script>
   (function() {
