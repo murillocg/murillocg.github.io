@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Sobre mim
-subtitle: Why you'd want to go on a date with me
+subtitle: 'Stay foolish, stay hungry'
 published: true
 ---
 
