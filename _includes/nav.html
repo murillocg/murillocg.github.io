@@ -34,6 +34,14 @@
           </li>
         {% endif %}
         {% endfor %}
+	{% if site.nav-search %}
+	<li>
+	  <a href="{{ site.baseurl }}/{{ site.nav-search }}" class="nav-search-link" title="Busca">
+	    <span class="fa fa-search nav-search-icon"></span>
+		<span class="nav-search-text">Busca</span>
+	  </a>
+	</li>
+	{% endif %}	      
       </ul>
     </div>
 
