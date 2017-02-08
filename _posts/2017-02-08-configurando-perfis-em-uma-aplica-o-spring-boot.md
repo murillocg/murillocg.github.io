@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Configurando perfis em uma aplicação Spring Boot
 date: '2017-02-08'
 ---
