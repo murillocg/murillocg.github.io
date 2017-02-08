@@ -5,9 +5,9 @@ title: Configurando perfis em uma aplicação Spring Boot
 date: '2017-02-08'
 ---
 O uso de perfis em aplicações é altamente recomendado por facilitar o desenvolvimento da aplicação bem como sua publicação. Através de perfis é possível ter configurações separadas por ambiente, sendo estes alguns exemplos:
-- Banco de dados (tipo de banco, endereço)
-- Logs (níveis de log e tipos de saída)
-- Configurações de build e deploy (maven)
+* Banco de dados (tipo de banco, endereço)
+* Logs (níveis de log e tipos de saída)
+* Configurações de build e deploy (maven)
 
 Neste post, será demonstrada a configuração de perfis integrados ao Maven para uma aplicação Spring Boot, o que facilita o trabalho em IDEs como o Netbeans, que permite a rápida escolha do perfil a ser utilizado.
 
