@@ -23,8 +23,9 @@ INSERT INTO PERSON VALUES (2, 'PESSOA 2', TO_DATE('02/02/1992','DD/MM/YYYY'), NU
 INSERT INTO PERSON VALUES (3, 'PESSOA 3', TO_DATE('03/03/1993','DD/MM/YYYY'), NULL);
 COMMIT;
 ```
+## Trigger para atualização da data
 
-Agora já é possível criar a trigger que será encarregada de atualizar a coluna da tabela toda vez que ocorrer um insert ou update na mesma. Utilizando este recurso, garante-se que a coluna será atualizada independente da origem da alteração da tabela: sistema A, integração, alteração manual, etc. Esta trigger poderia ser facilmente evoluída para gravar outra coluna com o usuário do banco que realizou a atualização. 
+Agora já é possível criar e testar a trigger que será encarregada de atualizar a coluna da tabela toda vez que ocorrer um **INSERT** ou **UPDATE** na mesma. Utilizando este recurso vinculado à tabela do banco de dados, garante-se que a coluna será atualizada independente da origem da alteração da tabela: sistema principal, integração de terceiros, alteração manual, etc. Esta trigger poderia ainda ser evoluída para atualizar outra coluna com o usuário logado no banco de dados. 
 
 ```sql
 CREATE OR REPLACE TRIGGER PERSON_LAST_UPDATE
@@ -41,6 +42,7 @@ BEGIN
    END IF;
 END;
 ```
+## Testes
 
 Agora é possível testar inserindo um registro. Note que o insert possui NULL no campo de LAST_UPDATE, justamente para deixar explícito que não está sendo populado por este comando.
 
