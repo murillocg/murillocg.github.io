@@ -8,10 +8,10 @@ title: Atualizar coluna no Oracle com data de última alteração do registro
 
 ```sql
 CREATE TABLE PERSON (
-ID      NUMBER(5) PRIMARY KEY,
-NAME      VARCHAR2(30),
-BIRTHDAY   DATE,
-LAST_UPDATE   DATE
+   ID          NUMBER(5) PRIMARY KEY,
+   NAME        VARCHAR2(30),
+   BIRTHDAY    DATE,
+   LAST_UPDATE DATE
 )
 ```
 
@@ -24,7 +24,7 @@ INSERT INTO PERSON VALUES (3, 'PESSOA 3', TO_DATE('03/03/1993','DD/MM/YYYY'), NU
 COMMIT;
 ```
 
-Agora já é possível criar a trigger que será encarregada de atualizar a coluna da tabela toda vez que ocorrer um insert ou update na mesma.
+Agora já é possível criar a trigger que será encarregada de atualizar a coluna da tabela toda vez que ocorrer um insert ou update na mesma. Utilizando este recurso, garante-se que a coluna será atualizada independente da origem da alteração da tabela: sistema A, integração, alteração manual, etc. Esta trigger poderia ser facilmente evoluída para gravar outra coluna com o usuário do banco que realizou a atualização. 
 
 ```sql
 CREATE OR REPLACE TRIGGER PERSON_LAST_UPDATE
@@ -42,7 +42,7 @@ BEGIN
 END;
 ```
 
-Agora é possível testar inserindo um registro. Note que o comando de insert coloca NULL no campo de LAST_UPDATE:
+Agora é possível testar inserindo um registro. Note que o insert possui NULL no campo de LAST_UPDATE, justamente para deixar explícito que não está sendo populado por este comando.
 
 ```sql
 INSERT INTO PERSON VALUES (4, 'PESSOA 4', TO_DATE('04/04/1994','DD/MM/YYYY'), NULL);
@@ -54,6 +54,9 @@ Realizando a consulta, pode-se perceber que a coluna foi devidamente carregada c
 select NAME, BIRTHDAY, TO_CHAR(LAST_UPDATE, 'DD/MM/YYYY HH:MI:SS') FROM PERSON WHERE ID = 4
 ```
 
-![consulta_update.png]({{site.baseurl}}/img/consulta_update.png)
+![consulta_update.png](/img/consulta_update.png)
 
+## Referências:
+
+- http://stackoverflow.com/a/1614291/5230740
 
