@@ -10,8 +10,53 @@ O Maven é uma ferramenta relativamente fácil de usar na maioria dos projetos, 
 1. O que são os scopes existentes nas dependências?
 2. Qual a diferença entre mvn package e mvn install
 3. Como ver todas as dependências, inclusive as implícitas?
+4. O que são os termos goal e execution, eventualmente presente em plugins?
 
-### Principais comandos
+### Ciclo de vida, fases e objetivos
+
+Um conceito muito importante por trás do Maven é o ciclo de vida do projeto. Um ciclo de vida possui estágios, chamados de fases. Em cada fase, um ou mais objetivos podem ser executados.
+
+O Maven possui nativamente 3 ciclos de vida: clean, site, default. Ao utilizar a ferramenta, estes ciclos não são mencionados, mas sim a fase. A partir da fase, o Maven infere o ciclo de vida. `mvn package`, por exemplo indica o ciclo de vida `default` (visto em seguida), então este ciclo é executado. As fases são executadas em sequência, até a fase especificada no comando.
+
+Já que cada ciclo de vida possui um número de fases, é importante listar as fases importantes para cada ciclo:
+
+- Ciclo _clean_: A fase clean remove todos arquivos e diretórios criados pelo Maven como parte do build.
+
+- Ciclo _site_: A fase site gera a documentação do projeto, que pode ser publicada ou customizada.
+
+- Ciclo _default_: Compreende um conjunto de fases para lidar com o build e deploy do projeto, sendo elas:
+1. _validate_: Valida se todas informações do projeto estão disponíveis e corretas;
+2. _compile_: Compila o código fonte;
+3. _test_: Roda os testes unitários dentro do framework configurado;
+4. _package_: Empacota o código compilado no formato de distribuição (jar ou war);
+5. _verify_: Faz checagens para verificar se o pacote é válido;
+6. _install_: Instala o pacote no repositório local para uso como uma dependência em outros projetos localmente;
+7. _deploy_: Instala o pacote final no repositório configurado;
+
+Cada fase é composta por plugins de objetivos. Um plugin é uma tarefa específica que faz o build do projeto. Segue abaixo a tabela de algumas fases e seus respectivos plugins e objetivos:
+
+| Fase    | Plugin                | Objetivo  |
+|---------|-----------------------|-----------|
+| clean   | Maven Clean plugin    | clean     |
+| site    | Maven Site plugin     | site      |
+| compile | Maven Compiler plugin | compile   |
+| test    | Maven Surefire plugin | test      |
+| package | Depende do packaging  | jar       |
+| install | Maven Install plugin  | install   |
+
+### Entendendo o pom.xml
+
+Todo projeto Maven possui um arquivo pom que define tudo sobre o projeto e como ele é construído. Pom é um acrônomo para **project object model**. Segue abaixo os principais elementos presentes no pom.xml:
+
+<groupId>...</groupId> -> Identificador da organização à qual o projeto pertence. É uma boa prática seguir a notação de domínio invertido para especificá-lo, como por exemplo, `io.github.murillocg`. 
+
+<artifactId>...</artifactId> -> É o nome do projeto. Um exemplo válido é `horacerta`.
+
+<version>...</version> -> É a versão do código do projeto. Enquanto o projeto está em desenvolvimento é comum levar o prefixo `1.0.SNAPSHOT`.
+
+<packaging>...</packaging> -> Indica o tipo de artefato do projeto, sendo `jar` e `war` os mais comuns. 
+
+### Comandos comuns
 
 `mvn compile`
 Dispara o compilador associado ao projeto (no pom.xml é possível definir outras versões).
@@ -24,7 +69,8 @@ Roda os testes do framework configurado
 Empacota o código compilado no formato de distribuição (jar ou war) 
 
 `mvn install`
-Este comando encapsula os comandos padrões de um ciclio de vida de build incluindo compilação, teste, empacotamento e instalação do artefato no repositório local.
+Comando utilizado para construir e instalar o artefato no repositório local.
+Este comando executa cada fase do ciclio de vida `default` em ordem (`validate`, `compile`, `package`, etc.), antes de executar `install`. 
 
 ### Escopo das dependências
 
@@ -90,4 +136,9 @@ Exibe as dependências no formato de árvore, muito útil em projetos recentes, 
 Exibe as dependências não usadas e não declaradas.
 
 ### Desenvolvimento Java com Maven
+
+mvn clean package
+
+mvn –DskipTests
+
 
