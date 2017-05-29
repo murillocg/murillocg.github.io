@@ -3,7 +3,13 @@ layout: post
 published: false
 title: Introdução ao Apache Maven
 ---
-## A New Post
+Em todos os projetos Java que trabalhei até agora, sempre utilizei o Maven como ferramenta para gerenciar dependências e fazer build do projeto. São esses dois aspectos da construção do software que o Maven se propõe a resolver e na minha opinião, o faz muito bem.
+
+O Maven é uma ferramenta relativamente fácil de usar na maioria dos projetos, havendo uma vasta quantidade de [projetos opensource](https://spring.io/guides) utilizando-o e até [ferramentas para geração de projetos](https://start.spring.io/). Ainda assim, no dia-a-dia do trabalho e estudos surgem algumas abordagens de uso diferentes das tradicionais, o que gera dúvidas intrigantes. Pois bem, o objetivo deste post é responder estas questões, não por dedução como às vezes acontece, mas por pesquisa.
+
+1. O que são os scopes existentes nas dependências?
+2. Qual a diferença entre mvn package e mvn install
+3. Como ver todas as dependências, inclusive as implícitas?
 
 ### Principais comandos
 
@@ -20,10 +26,7 @@ Empacota o código compilado no formato de distribuição (jar ou war)
 `mvn install`
 Este comando encapsula os comandos padrões de um ciclio de vida de build incluindo compilação, teste, empacotamento e instalação do artefato no repositório local.
 
-### Desenvolvendo uma aplicação Web
-
-
-?? O que o scopes significam ??
+### Escopo das dependências
 
 o scope padrão é compile.
 
@@ -35,11 +38,56 @@ Existem 6 diferentes escopos disponíveis, sendo eles:
 
 * runtime - Dependência não necessária durante a compilação, mas para rodar o projeto.  It is in the runtime and test classpaths, but not the compile classpath. Um exemplo ?
 
-* provided - This tells Maven that dependency is required for compilation and runtime,
-but this dependency need not be packaged with the package for distribution.
-The dependency will be provided by the user. An example of this dependency is
-servlet-api. Typically, application servers have these libraries.
+* provided - Dependência necessária para compilação e runtime, mas não empacotada com o projeto para distribuição. Esta dependência será fornecida pelo usuário. Um exemplo desta dependência é `servlet-api`, em geral fornecida pelos servidores de aplicação.
 
-* system - 
+* system - Similar a `provided`, porém necessita ser indicado explicitamente a localização do arquivo JAR. Pouco utilizada. 
 
-* import
+* import - Dependência utilizada para centralizar projetos com vários módulos. 
+
+### Visualizar dependências
+
+É muito útil visualizar as dependências do projeto para resolver problemas ou mesmo para manter esta configuração o mais simples possível. O plugin dependências do Maven possui uma série de objetivos (goals) para obter informações detalhadas, então vamos ver as mais úteis. 
+
+`mvn dependency:tree`
+Exibe as dependências no formato de árvore, muito útil em projetos recentes, que utilizam Spring Boot, com seu modelo de dependências agrupadas (spring-boot-starter-data-jpa, spring-boot-starter-security, spring-boot-starter-web).
+
+```
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building duolingo 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-dependency-plugin:2.10:tree (default-cli) @ duolingo ---
+[INFO] com.agilelabs:duolingo:jar:0.0.1-SNAPSHOT
+[INFO] +- org.springframework.boot:spring-boot-starter-actuator:jar:1.5.3.RELEASE:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter:jar:1.5.3.RELEASE:compile
+[INFO] |  |  \- org.springframework.boot:spring-boot-starter-logging:jar:1.5.3.RELEASE:compile
+[INFO] |  |     +- ch.qos.logback:logback-classic:jar:1.1.11:compile
+[INFO] |  |     |  \- ch.qos.logback:logback-core:jar:1.1.11:compile
+[INFO] |  |     +- org.slf4j:jul-to-slf4j:jar:1.7.25:compile
+[INFO] |  |     \- org.slf4j:log4j-over-slf4j:jar:1.7.25:compile
+[INFO] |  \- org.springframework.boot:spring-boot-actuator:jar:1.5.3.RELEASE:compile
+[INFO] |     \- org.springframework:spring-context:jar:4.3.8.RELEASE:compile
+[INFO] +- org.springframework.boot:spring-boot-starter-data-jpa:jar:1.5.3.RELEASE:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter-aop:jar:1.5.3.RELEASE:compile
+[INFO] |  |  \- org.aspectj:aspectjweaver:jar:1.8.10:compile
+[INFO] |  +- org.springframework.boot:spring-boot-starter-jdbc:jar:1.5.3.RELEASE:compile
+[INFO] |  |  +- org.apache.tomcat:tomcat-jdbc:jar:8.5.14:compile
+[INFO] |  |  |  \- org.apache.tomcat:tomcat-juli:jar:8.5.14:compile
+[INFO] |  |  \- org.springframework:spring-jdbc:jar:4.3.8.RELEASE:compile
+[INFO] |  +- org.hibernate:hibernate-core:jar:5.0.12.Final:compile
+[INFO] |  |  +- org.jboss.logging:jboss-logging:jar:3.3.1.Final:compile
+[INFO] |  |  +- org.hibernate.javax.persistence:hibernate-jpa-2.1-api:jar:1.0.0.Final:compile
+[INFO] |  |  +- org.javassist:javassist:jar:3.21.0-GA:compile
+[INFO] |  |  +- antlr:antlr:jar:2.7.7:compile
+[INFO] |  |  +- org.jboss:jandex:jar:2.0.0.Final:compile
+[INFO] |  |  +- dom4j:dom4j:jar:1.6.1:compile
+[INFO] |  |  \- org.hibernate.common:hibernate-commons-annotations:jar:5.0.1.Final:compile
+````
+
+`mvn dependency:analyze`
+Exibe as dependências não usadas e não declaradas.
+
+### Desenvolvimento Java com Maven
+
