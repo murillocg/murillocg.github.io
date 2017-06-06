@@ -28,12 +28,12 @@ Já que cada ciclo de vida possui um número de fases, cabe listar as fases impo
 * Ciclo _default_: Compreende um conjunto de fases para lidar com o build e deploy do projeto, sendo elas:
 
     1. _validate_: Valida se todas informações do projeto estão disponíveis e corretas;
-    + _compile_: Compila o código fonte;
-    + _test_: Roda os testes unitários dentro do framework configurado;
-    + _package_: Empacota o código compilado no formato de distribuição (jar ou war);
-    + _verify_: Faz checagens para verificar se o pacote é válido;
-    + _install_: Instala o pacote no repositório local para uso como uma dependência em outros projetos localmente;
-    + _deploy_: Instala o pacote final no repositório configurado;
+    2. _compile_: Compila o código fonte;
+    3. _test_: Roda os testes unitários dentro do framework configurado;
+    4. _package_: Empacota o código compilado no formato de distribuição (jar ou war);
+    5. _verify_: Faz checagens para verificar se o pacote é válido;
+    6. _install_: Instala o pacote no repositório local para uso como uma dependência em outros projetos localmente;
+    7. _deploy_: Instala o pacote final no repositório configurado;
 
 Cada fase é composta por plugins de objetivos. Um plugin é uma tarefa específica que faz o build do projeto. Segue abaixo a tabela de algumas fases e seus respectivos plugins e objetivos:
 
@@ -50,13 +50,13 @@ Cada fase é composta por plugins de objetivos. Um plugin é uma tarefa específ
 
 Todo projeto Maven possui um arquivo pom que define tudo sobre o projeto e como ele é construído. Pom é um acrônomo para **project object model**. Segue abaixo os principais elementos presentes no pom.xml:
 
-<groupId>...</groupId> -> Identificador da organização à qual o projeto pertence. É uma boa prática seguir a notação de domínio invertido para especificá-lo, como por exemplo, `io.github.murillocg`. 
+`<groupId>...</groupId>`: Identificador da organização à qual o projeto pertence. É uma boa prática seguir a notação de domínio invertido para especificá-lo, como por exemplo, `io.github.murillocg`. 
 
-<artifactId>...</artifactId> -> É o nome do projeto. Um exemplo válido é `horacerta`.
+`<artifactId>...</artifactId>`: É o nome do projeto. Um exemplo válido é `horacerta`.
 
-<version>...</version> -> É a versão do código do projeto. Enquanto o projeto está em desenvolvimento é comum levar o prefixo `1.0.SNAPSHOT`.
+`<version>...</version>`: É a versão do código do projeto. Enquanto o projeto está em desenvolvimento é comum levar o prefixo `1.0.SNAPSHOT`.
 
-<packaging>...</packaging> -> Indica o tipo de artefato do projeto, sendo `jar` e `war` os mais comuns. 
+`<packaging>...</packaging>`: Indica o tipo de artefato do projeto, sendo `jar` e `war` os mais comuns. 
 
 ## Comandos mais conhecidos
 
@@ -152,6 +152,7 @@ No desenvolvimento de uma aplicação moderna existem alguns comandos comuns, en
 Compilar para ambiente de produção:
 
     mvn -Pprod clean package –DskipTests
+
 1. Observe o uso do `package` e não do `install`, porque na maioria dos projetos não há a necessidade de instalar o artefato no repositório local, assim economizados o tempo de cópia. 
 2. Os testes não são executados no ambiente de produção, devido à base de dados, principalmente. Em tempo, eles são executados no ambiente dev ou homologação, mas devem sempre fazer parte do processo de deploy.
 
