@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Introdução ao Apache Maven
 ---
 Em todos os projetos Java que trabalhei até agora, sempre utilizei o Maven como ferramenta para gerenciar dependências e fazer build do projeto. São esses dois aspectos da construção do software que o Maven se propõe a resolver e na minha opinião, o faz muito bem.
@@ -11,6 +11,7 @@ O Maven é uma ferramenta fácil de usar na maioria dos projetos, havendo uma va
 2. Qual a diferença entre mvn package e mvn install?
 3. Como ver todas as dependências, inclusive as implícitas?
 4. O que são os termos goal e execution, eventualmente presente em plugins?
+5. Quais são os comandos principais no desenvolvimento de um projeto?
 
 ## Ciclo de vida, fases e objetivos
 
@@ -83,11 +84,9 @@ Este comando executa cada fase do ciclio de vida `default` em ordem (`validate`,
 
 ## Escopo das dependências
 
-o scope padrão é compile.
-
 Existem 6 diferentes escopos disponíveis, sendo eles:
 
-* compile - Dependência necessária para compilação. Significa, por consequência, que é necessária para testes bem como em runtime (quando o projeto está rodando)
+* compile* - Dependência necessária para compilação. Significa, por consequência, que é necessária para testes bem como em runtime (quando o projeto está rodando). ** Escopo _default_ das dependências.
 
 * test - Dependência necessária somente para testes. Significa que esta dependência está no código de teste. Como o código de teste não é usado para rodar o projeto, esta dependência não é necessária em runtime
 
@@ -146,10 +145,23 @@ Exibe as dependências no formato de árvore, muito útil em projetos recentes, 
     
 Exibe as dependências não usadas e não declaradas.
 
-## Desenvolvendo Java com Maven
+## Desenvolvendo e publicando uma aplicação  
 
-mvn clean package
+No desenvolvimento de uma aplicação moderna existem alguns comandos comuns, encontrados em diversos [projetos opensource](https://github.com/jhipster/jhipster-sample-app-ng2), sendo eles:
 
-mvn –DskipTests
+Compilar para ambiente de produção:
 
+    mvn -Pprod clean package –DskipTests
+1. Observe o uso do `package` e não do `install`, porque na maioria dos projetos não há a necessidade de instalar o artefato no repositório local, assim economizados o tempo de cópia. 
+2. Os testes não são executados no ambiente de produção, devido à base de dados, principalmente. Em tempo, eles são executados no ambiente dev ou homologação, mas devem sempre fazer parte do processo de deploy.
+
+Execução dos testes, que geralmente rodam no [perfil default dev](https://murillocg.github.io/2017-02-08-configurando-perfis-em-uma-aplica-o-spring-boot/):
+    
+    mvn clean test
+    
+## Conclusão
+
+O Maven é uma ferramenta de build e gerenciamento de dependências muito poderosa e flexível. No entanto, esta flexibilidade pode gerar confusão, como no uso do `package` x `install`. Por isso, é importante que se conheça um pouco além do básico, que foi exatamente a proposta deste artigo.
+
+Ainda tem dúvidas? Escreva nos comentários. Até a próxima.
 
