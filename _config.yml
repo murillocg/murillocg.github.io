@@ -94,7 +94,7 @@ share-links-active:
 disqus: "murillocg"
 
 # Fill in your Google Analytics ID to track your website using GA
-#google_analytics: ""
+google_analytics: "UA-105303157-1"
 
 # Google Tag Manager ID
 #gtm: ""
