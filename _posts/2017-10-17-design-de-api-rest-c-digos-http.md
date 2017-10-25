@@ -21,11 +21,6 @@ Segue abaixo a relação dos códigos mais comuns para uso, separada por categor
 
 ### Redirecionamento
 
-|title                                                                                |date       |author           | favorites| retweets| score|
-|:------------------------------------------------------------------------------------|:----------|:----------------|---------:|--------:|-----:|
-|A new interactive interface for learning R online, for free                          |2015.04.14 |DataCamp         |        78|       49|   176|
-
-
 |Código                |Descrição                                                                            |
 |:---------------------|:------------------------------------------------------------------------------------|
 |301 Moved Permanently | Base para criação de [encurtadores de URL](https://github.com/murillocg/tiny-url). |
