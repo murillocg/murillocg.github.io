@@ -4,8 +4,7 @@ published: true
 title: Design de API REST - Códigos HTTP
 date: '2017-10-17'
 ---
-## Design de API REST - Códigos HTTP
-
+## Introdução
 O procotolo HTTP define uma série de [~60 códigos de status](https://tools.ietf.org/html/rfc7231#section-6) que podem ser retornados em API. Estes códigos são essenciais para indicar o resultado de uma requisição, ou seja, da manipulação de recursos. 
 
 Comumente vimos APIs trabalhando apenas com o código 200, sendo necessário analisar campos específicos da resposta para entender exatamente o resultado da requisição. Esta abordagem, além de inutilizar o código de status HTTP, ainda exige um tratamento específico, sendo necessário interpretar um ou mais campos do corpo da requisição, dificultando o consumo da API por parte dos clientes.
@@ -14,20 +13,20 @@ Segue abaixo a relação dos códigos mais comuns para uso, separada por categor
 
 ### Sucesso
 | Código  | Descrição |
-| ------------- | ------------- |
+| --- | --- |
 | 200 OK | Resposta a um bem-sucedido GET, PUT, PATCH ou DELETE. Também pode ser usado para um POST que não resulte em uma criação. |
 | 201 Created | Em requisições POST quando um recurso é criado. |
 | 204 No Content | Resposta a uma requisição bem-sucedida que não retorna um corpo (requisição DELETE). |
 
 ### Redirecionamento
 | Código  | Descrição |
-| ------------- | ------------- |
+| --- | --- |
 | 301 Moved Permanently | Base para criação de [encurtadores de URL](https://github.com/murillocg/tiny-url). |
 | 304 Not Modified | Usado ao lidar com cabeçalhos de cache HTTP. |
 
 ### Erros do cliente da API
 | Código  | Descrição |
-| ------------- | ------------- |
+| --- | --- |
 | 400 Bad Request | O pedido é malformado; não foi possível fazer o parse do corpo. |
 | 401 Unauthorized | Cliente não está autenticado ou os dados de autenticação são inválidos. |
 | 403 Forbidden | A autenticação foi bem-sucedida, mas o usuário autenticado não tem acesso ao recurso. |
@@ -38,7 +37,7 @@ Segue abaixo a relação dos códigos mais comuns para uso, separada por categor
 
 ### Erros do servidor
 | Código  | Descrição |
-| ------------- | ------------- |
+| --- | --- |
 | 500 Internal Server Error | Erro genérico indicando um problema de execução no servidor (cliente pode fazer chamar novamente se faz sentido) |
 
 ## Conclusão
