@@ -7,11 +7,12 @@ published: true
 
 - **Nome:** Murillo Goulart
 - **Cidade:** São Leopoldo - RS
-- **Trabalho:** CWI Software desde 2016
+- **Trabalho:** SAP desde 2017
 
 ## Interesses atuais
-- Java Web
-- Docker
-- Front-end
-- Cloud computing
-- Internet das coisas
+- Java/Spring Boot
+- Docker/Kubernetes
+- Event-Driven Microservices
+- AWS
+- ReactJS
+- NoSQL
