@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: Dicas de preparação para a certificação Oracle Java 8 Programmer I (OCA)
-image: /img/certificated.bmp
+bigimg: /img/certificated.bmp
 ---
 
 No início deste ano, logo após minha formatura e [mudança de emprego](www.linkedin.com/in/murillogoulart), decidi fazer a certificação de Java. O objetivo era acelerar a evolução da minha carreira e atestar meu conhecimento. Outro fator motivador foi que a [empresa onde trabalhava](https://www.cwi.com.br/Oportunidades) apoia a realização de certificações do seu interesse, reembolsando integralmente este custo em caso de aprovação. 
