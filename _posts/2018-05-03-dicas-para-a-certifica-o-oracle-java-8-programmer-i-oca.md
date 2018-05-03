@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Dicas de preparação para a certificação Oracle Java 8 Programmer I (OCA)
 image: /img/certificated.bmp
 ---
@@ -33,6 +33,6 @@ O material de estudo é bastante pesado (o guia oficial possui mais de 500 pági
 ### Realize simulados
 Esta talvez seja a dica mais valiosa. Você pode ignorar todas as outras e começar realizando simulados. Mesmo para aquelas pessoas com boa experiência em Java, esta primeira certificação é bastante difícil, cheia de armadilhas e detalhes da linguagem que no trabalho cotidiano não são vistos. Muitos deles, inclusive, são avisados pela própria IDE (falta de construtor, chamada para construtor da superclasse, etc). Quando você fizer o simulado, que é muito próximo da prova oficial, perceberá todas estas questões e sentirá a necessidade real de estudo (detalhadas nas dicas anteriores). A partir de uma simples pesquisa no Google, é possível encontrar diversos materiais para simulado, mas eu recomendo fortemente o [Enthuware](http://enthuware.com/index.php/mock-exams/oracle-certified-associate/java-oca-certification-8). Trata-se de um software com mais de 600 questões, incluindo simulados por assuntos e completos, com temporizador (como na prova), onde os resultados são exibidos por assunto abordado da prova, registrando histórico da sua evolução e explicação detalhada das respostas. O pequeno detalhe é que o software é pago (algo em torno de 10 dólares), mas tenha certeza que vale cada centavo.
 
-Estas são as principais dicas para preparação para a certificação. Espero que elas possam ajudar quem tem interesse em fazer esta certificação, pouco explorada no mercado de trabalho, e portanto, bem valorizada. Quando decidi fazer a certificação, não tinha muita expectativa em relação a visibilidade de mercado. Mas, para a minha surpresa, após a certificação, surgiram várias oportunidades pelo LinkedIn. Uma delas, inclusive, fez eu trocar de emprego. Por isso, recomendo fortemente para aqueles que desejam evoluir na carreira de Java.
+Estas são as principais dicas de preparação para a certificação. Espero que elas possam ajudar quem tem interesse em fazer esta certificação, pouco explorada no mercado de trabalho, e portanto, bem valorizada. Quando decidi fazer a certificação, não tinha muita expectativa em relação a visibilidade de mercado. Mas, para a minha surpresa, após a certificação, surgiram várias oportunidades pelo LinkedIn. Uma delas, inclusive, fez eu trocar de emprego. Por isso, recomendo fortemente para aqueles que desejam evoluir na carreira de Java.
 
 Se tiver alguma dúvida, não hesite em perguntar. Deixe seu comentário, ou mesmo um simples like. Abraço e até a próxima.
